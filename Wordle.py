@@ -36,7 +36,8 @@ def wordle():
                             if gw.get_square_color(current_row, col) != CORRECT_COLOR:
                                 gw.set_square_color(current_row, col, PRESENT_COLOR)
             if userInput == randWord:
-                gw.show_message("Congrats! You guessed the word!")            
+                gw.show_message("Congrats! You guessed the word!")
+                # add in close the tab when they win here            
             gw.set_current_row(current_row + 1)
     
         else: 
