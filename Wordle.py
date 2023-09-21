@@ -6,20 +6,27 @@ BE SURE TO UPDATE THIS COMMENT WHEN YOU WRITE THE CODE.
 """
 
 import random
-
 from WordleDictionary import FIVE_LETTER_WORDS
 from WordleGraphics import WordleGWindow, N_COLS, N_ROWS
 
+
+
 def wordle():
-    CORRECT_COLOR = "#66BB66" 
-    PRESENT_COLOR = "#CCBB66" 
-    MISSING_COLOR = "#999999"
+    
     # Creates randWord and is assigned a random word from the dictionary and makes the word all uppercase.
     randWord = random.choice(FIVE_LETTER_WORDS).upper()
     # Turns the random word into a list to separate the word into characters.
     listRandWord = list(randWord)
     # Takes User Input and checks to see if it is a word listed in the dictionary
     def enter_action(s):
+        trueOrFalse = bool
+        if gw.switch(trueOrFalse) == True:
+            correctColor = "#66BB66" 
+            presentColor = "#CCBB66" 
+            #missingColor = "#999999"
+        else:
+            correctColor = "#CCBB66" 
+            presentColor = "#66BB66"
         userInput = s
         current_row = gw.get_current_row()
         if userInput.lower() in FIVE_LETTER_WORDS:
@@ -31,10 +38,12 @@ def wordle():
                     if letter == letter1:
                         print("found match " + letter + " " + letter1)
                         if col == col1:
-                            gw.set_square_color(current_row, col, CORRECT_COLOR)
+                            gw.set_square_color(current_row, col, correctColor)
                         else:
-                            if gw.get_square_color(current_row, col) != CORRECT_COLOR:
-                                gw.set_square_color(current_row, col, PRESENT_COLOR)
+                            if gw.get_square_color(current_row, col) != correctColor:
+                                gw.set_square_color(current_row, col, presentColor)
+                                
+                                    
             if userInput == randWord:
                 gw.show_message("Congrats! You guessed the word!")
                 # add in close the tab when they win here            

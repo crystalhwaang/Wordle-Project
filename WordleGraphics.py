@@ -9,15 +9,19 @@ import atexit
 import math
 import time
 import tkinter
+from tkinter import *
 
 # Constants
 
 N_ROWS = 6			# Number of rows
 N_COLS = 5			# Number of columns
 
-CORRECT_COLOR = "#66BB66"       # Light green for correct letters
-PRESENT_COLOR = "#CCBB66"       # Brownish yellow for misplaced letters
-MISSING_COLOR = "#999999"       # Gray for letters that don't appear
+
+
+
+#CORRECT_COLOR = "#66BB66"       # Light green for correct letters
+#PRESENT_COLOR = "#CCBB66"       # Brownish yellow for misplaced letters
+#MISSING_COLOR = "#999999"       # Gray for letters that don't appear
 UNKNOWN_COLOR = "#FFFFFF"       # Undetermined letters are white
 KEY_COLOR = "#DDDDDD"           # Keys are colored light gray
 
@@ -60,6 +64,8 @@ MESSAGE_Y = TOP_MARGIN + BOARD_HEIGHT + MESSAGE_SEP
 
 class WordleGWindow:
     """This class creates the Wordle window."""
+    global switch_on
+    
 
     def __init__(self):
         """Creates the Wordle window."""
@@ -169,6 +175,34 @@ class WordleGWindow:
         root.bind("<ButtonRelease-1>", release_action)
         self._row = 0
         self._col = 0
+
+        global switch_on
+        switch_on = True
+        def switch(trueOrFalse):
+            global switch_on
+            if switch_on:
+                on_button.config(image = off)
+                switch_on = False
+                trueOrFalse = switch_on
+                return trueOrFalse
+                
+ 
+            else:
+                on_button.config(image = on)
+                switch_on = True
+                trueOrFalse = switch_on
+                return trueOrFalse
+                
+               
+                
+                
+            
+        on = PhotoImage(file = "image/on.png")
+        off = PhotoImage(file = "image/off.png")
+
+        on_button = Button(root, image = on, bd = 0, command = switch)
+        on_button.pack(pady = 50)
+
         atexit.register(start_event_loop)
 
     def get_square_letter(self, row, col):
