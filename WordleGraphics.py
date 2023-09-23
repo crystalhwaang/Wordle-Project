@@ -17,11 +17,9 @@ N_ROWS = 6			# Number of rows
 N_COLS = 5			# Number of columns
 
 
-
-
-#CORRECT_COLOR = "#66BB66"       # Light green for correct letters
-#PRESENT_COLOR = "#CCBB66"       # Brownish yellow for misplaced letters
-#MISSING_COLOR = "#999999"       # Gray for letters that don't appear
+correctColor = "#66BB66"       # Light green for correct letters
+presentColor = "#CCBB66"       # Brownish yellow for misplaced letters
+MISSING_COLOR = "#999999"       # Gray for letters that don't appear
 UNKNOWN_COLOR = "#FFFFFF"       # Undetermined letters are white
 KEY_COLOR = "#DDDDDD"           # Keys are colored light gray
 
@@ -64,7 +62,6 @@ MESSAGE_Y = TOP_MARGIN + BOARD_HEIGHT + MESSAGE_SEP
 
 class WordleGWindow:
     """This class creates the Wordle window."""
-    global switch_on
     
 
     def __init__(self):
@@ -116,7 +113,7 @@ class WordleGWindow:
                 self.show_message("")
                 s = ""
                 for col in range(N_COLS):
-                    s += self._grid[self._row][col].get_letter();
+                    s += self._grid[self._row][col].get_letter()
                 for fn in self._enter_listeners:
                     fn(s)
             elif ch.isalpha():
@@ -139,6 +136,9 @@ class WordleGWindow:
                         key = find_key(tke.x, tke.y)
                         if key:
                             key_action(key._label)
+        
+        
+
 
         def find_key(x, y):
             for key in self._keys.values():
@@ -178,32 +178,34 @@ class WordleGWindow:
 
         global switch_on
         switch_on = True
-        def switch(trueOrFalse):
+        def toggleSwitch():
             global switch_on
+            global correctColor
+            global presentColor
             if switch_on:
                 on_button.config(image = off)
                 switch_on = False
-                trueOrFalse = switch_on
-                return trueOrFalse
+                correctColor = "#66BB66" 
+                presentColor = "#CCBB66" 
                 
- 
+                
             else:
                 on_button.config(image = on)
-                switch_on = True
-                trueOrFalse = switch_on
-                return trueOrFalse
-                
-               
-                
-                
-            
+                switch_on = True 
+                correctColor = "#CCBB66" 
+                presentColor = "#66BB66"
+
+            return switch_on
+                                  
         on = PhotoImage(file = "image/on.png")
         off = PhotoImage(file = "image/off.png")
 
-        on_button = Button(root, image = on, bd = 0, command = switch)
+        on_button = Button(root, image = on, bd = 0, command = toggleSwitch)
         on_button.pack(pady = 50)
-
+        
         atexit.register(start_event_loop)
+        
+    
 
     def get_square_letter(self, row, col):
         return self._grid[row][col].get_letter()

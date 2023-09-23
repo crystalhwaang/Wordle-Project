@@ -7,7 +7,7 @@ BE SURE TO UPDATE THIS COMMENT WHEN YOU WRITE THE CODE.
 
 import random
 from WordleDictionary import FIVE_LETTER_WORDS
-from WordleGraphics import WordleGWindow, N_COLS, N_ROWS
+from WordleGraphics import WordleGWindow, N_COLS, N_ROWS, correctColor, presentColor
 
 
 
@@ -19,14 +19,6 @@ def wordle():
     listRandWord = list(randWord)
     # Takes User Input and checks to see if it is a word listed in the dictionary
     def enter_action(s):
-        trueOrFalse = bool
-        if gw.switch(trueOrFalse) == True:
-            correctColor = "#66BB66" 
-            presentColor = "#CCBB66" 
-            #missingColor = "#999999"
-        else:
-            correctColor = "#CCBB66" 
-            presentColor = "#66BB66"
         userInput = s
         current_row = gw.get_current_row()
         if userInput.lower() in FIVE_LETTER_WORDS:
