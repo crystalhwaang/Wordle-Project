@@ -17,8 +17,8 @@ N_ROWS = 6			# Number of rows
 N_COLS = 5			# Number of columns
 
 
-correctColor = "#66BB66"       # Light green for correct letters
-presentColor = "#CCBB66"       # Brownish yellow for misplaced letters
+correctColor = "#66BB66"        # Light green for correct letters
+presentColor = "#CCBB66"        # Brownish yellow for misplaced letters
 MISSING_COLOR = "#999999"       # Gray for letters that don't appear
 UNKNOWN_COLOR = "#FFFFFF"       # Undetermined letters are white
 KEY_COLOR = "#DDDDDD"           # Keys are colored light gray
@@ -175,37 +175,49 @@ class WordleGWindow:
         root.bind("<ButtonRelease-1>", release_action)
         self._row = 0
         self._col = 0
+        atexit.register(start_event_loop)
 
         global switch_on
         switch_on = True
+        my_label = Label(root, text="Default colors on, Green is correct place, Yellow is correct letter wrong place, click the button for color blind mode", fg = "black", font=("Helvetica, 12"))
+        my_label.pack(pady = 20)
         def toggleSwitch():
             global switch_on
             global correctColor
             global presentColor
-            if switch_on:
+            if switch_on == True:
                 on_button.config(image = off)
-                switch_on = False
+                my_label.config(text = "New Color Blind Mode On! Red is correct place, blue is correct letter wrong place, click the button for default colors",
+                        fg = "black")
                 correctColor = "#66BB66" 
                 presentColor = "#CCBB66" 
-                
+                switch_on = False
                 
             else:
                 on_button.config(image = on)
-                switch_on = True 
+                my_label.config(text = "Default colors on, Green is correct place, yellow is correct letter wrong place", fg = "black")
                 correctColor = "#CCBB66" 
                 presentColor = "#66BB66"
-
+                switch_on = True 
             return switch_on
-                                  
+        
+                                    
         on = PhotoImage(file = "image/on.png")
         off = PhotoImage(file = "image/off.png")
 
         on_button = Button(root, image = on, bd = 0, command = toggleSwitch)
         on_button.pack(pady = 50)
         
-        atexit.register(start_event_loop)
+    def trueFalse(self):
+        self.switch_on = switch_on
+        if self.switch_on == True:
+            self.switch_on = False
+        else:
+            self.switch_on = True
+        return self.switch_on
+   
         
-    
+        
 
     def get_square_letter(self, row, col):
         return self._grid[row][col].get_letter()
