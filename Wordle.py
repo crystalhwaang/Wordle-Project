@@ -49,11 +49,11 @@ def wordle():
                         print("found match " + letter + " " + letter1)
                         trueFalse = gw.trueFalse()
                         if trueFalse:
-                            correctColor = "#FF2D00"
-                            presentColor = "#0800FF"
+                            correctColor = "#6ca965"
+                            presentColor = "#c8b653"
                         else:
                             correctColor = "#66BB66" 
-                            presentColor = "#CCBB66" 
+                            presentColor = "#CCBB66"  
                         if col == col1:
                             gw.set_square_color(current_row, col, correctColor)
                         else:
