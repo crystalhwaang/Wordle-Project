@@ -12,6 +12,7 @@ import random
 from WordleDictionary import FIVE_LETTER_WORDS
 from WordleGraphics import WordleGWindow, N_COLS, N_ROWS
 
+
 # Creating a dictionary to hold how many guesses each play took
 # The key is the number of guesses and the value is how many games they have played in one sitting for each of those number of guesses
 guess_num = 0
@@ -45,6 +46,14 @@ def wordle():
             for col, letter in enumerate(userInput):
                 for col1, letter1 in enumerate(randWord):
                     if letter == letter1:
+                        print("found match " + letter + " " + letter1)
+                        trueFalse = gw.trueFalse()
+                        if trueFalse:
+                            correctColor = "#FF2D00"
+                            presentColor = "#0800FF"
+                        else:
+                            correctColor = "#66BB66" 
+                            presentColor = "#CCBB66" 
                         if col == col1:
                             gw.set_square_color(current_row, col, correctColor)
                         else:
