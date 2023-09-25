@@ -1,4 +1,6 @@
 # File: WordleGraphics.py
+from tkinter import *
+from tkinter import messagebox
 
 """
 This file implements the WordleGWindow class, which manages the
@@ -154,6 +156,7 @@ class WordleGWindow:
         def start_event_loop():
             """Starts the tkinter event loop when the program exits."""
             root.mainloop()
+                       
 
         root = tkinter.Tk()
         root.title("Wordle")
@@ -176,32 +179,32 @@ class WordleGWindow:
         self._row = 0
         self._col = 0
 
-        global switch_on
-        switch_on = True
-        def switch(trueOrFalse):
-            global switch_on
-            if switch_on:
-                on_button.config(image = off)
-                switch_on = False
-                trueOrFalse = switch_on
-                return trueOrFalse
+        # global switch_on
+        # switch_on = True
+        # def switch(trueOrFalse):
+        #     global switch_on
+        #     if switch_on:
+        #         on_button.config(image = off)
+        #         switch_on = False
+        #         trueOrFalse = switch_on
+        #         return trueOrFalse
                 
  
-            else:
-                on_button.config(image = on)
-                switch_on = True
-                trueOrFalse = switch_on
-                return trueOrFalse
+        #     else:
+        #         on_button.config(image = on)
+        #         switch_on = True
+        #         trueOrFalse = switch_on
+        #         return trueOrFalse
                 
                
                 
                 
             
-        on = PhotoImage(file = "image/on.png")
-        off = PhotoImage(file = "image/off.png")
+        # on = PhotoImage(file = "image/on.png")
+        # off = PhotoImage(file = "image/off.png")
 
-        on_button = Button(root, image = on, bd = 0, command = switch)
-        on_button.pack(pady = 50)
+        # on_button = Button(root, image = on, bd = 0, command = switch)
+        # on_button.pack(pady = 50)
 
         atexit.register(start_event_loop)
 
