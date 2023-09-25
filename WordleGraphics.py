@@ -178,11 +178,11 @@ class WordleGWindow:
         root.bind("<ButtonRelease-1>", release_action)
         self._row = 0
         self._col = 0
-        atexit.register(start_event_loop)
+        
 
         global switch_on
         switch_on = True
-        my_label = Label(root, text="Default colors on, Green is correct place, Yellow is correct letter wrong place, click the button for color blind mode", fg = "black", font=("Helvetica, 12"))
+        my_label = Label(root, text="Default colors on, Green is correct place, Yellow is correct letter wrong place, click the button for original Wordle color mode", fg = "black", font=("Helvetica, 12"))
         my_label.pack(pady = 20)
         def toggleSwitch():
             global switch_on
@@ -190,7 +190,7 @@ class WordleGWindow:
             global presentColor
             if switch_on == True:
                 on_button.config(image = off)
-                my_label.config(text = "New Color Blind Mode On! Red is correct place, blue is correct letter wrong place, click the button for default colors",
+                my_label.config(text = "Orginal Wordle Colors! Click the button for default colors",
                         fg = "black")
                 correctColor = "#66BB66" 
                 presentColor = "#CCBB66" 
@@ -210,7 +210,8 @@ class WordleGWindow:
 
         on_button = Button(root, image = on, bd = 0, command = toggleSwitch)
         on_button.pack(pady = 50)
-        
+        atexit.register(start_event_loop)
+
     def trueFalse(self):
         self.switch_on = switch_on
         if self.switch_on == True:
