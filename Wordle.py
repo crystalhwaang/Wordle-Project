@@ -49,8 +49,8 @@ def wordle():
                         print("found match " + letter + " " + letter1)
                         trueFalse = gw.trueFalse()
                         if trueFalse:
-                            correctColor = "#6ca965"
-                            presentColor = "#c8b653"
+                            correctColor = "#3944BC"
+                            presentColor = "#ffa500"
                         else:
                             correctColor = "#66BB66" 
                             presentColor = "#CCBB66"  
