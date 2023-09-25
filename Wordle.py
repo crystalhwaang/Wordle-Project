@@ -66,7 +66,6 @@ def wordle():
                 play_again = messagebox.askyesno(title="Replay", message="Play Again?")
                 # Looping through and updating the value in the dictionary and restarting the game
                 if play_again: 
-                    wordle()
                     stats_dict.update({guess_num:stats_dict.get(guess_num) + 1})
                     guess_num = 0
                     stats_message = ""
@@ -75,8 +74,12 @@ def wordle():
 
                     # Messagebox showing the stats after each round
                     messagebox.showinfo(title="Your Stats", message=stats_message)
+                    wordle()
+                    
                 else:
                     quit
+            
+            
 
             gw.set_current_row(current_row + 1)
     
